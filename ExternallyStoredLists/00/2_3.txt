@@ -1,3 +1,29 @@
+
+--------------------------------------------------------------------------
+[1] Proposed Text
+--------------------------------------------------------------------------
+
+2.3.  :list tagged argument to the "redirect" action
+
+   Usage:  redirect :list <ext-list-name: string>
+
+   The "redirect" action with the ":list" argument is used to send the
+   message to one or more email addresses stored in the externally
+   stored list 'ext-list-name'.  This variant of the redirect command
+   can be used to implement a personal distribution list.
+   
+   The Sieve engine and external list server MUST collaborate to
+   achieve a redirection semantically consistent with the definition
+   of redirect in [Sieve]. If the Sieve engine and external list server 
+   find themselves unable to perform this redirect then the situation 
+   MUST result in a runtime error in the Sieve script.
+
+   See Section 2.4 for the detailed description of syntax used for
+   naming externally stored lists.
+
+--------------------------------------------------------------------------
+[2] Original Text
+--------------------------------------------------------------------------
 2.3.  :list tagged argument to the "redirect" action
 
    Usage:  redirect :list <ext-list-name: string>
@@ -26,45 +52,4 @@
 
    See Section 2.4 for the detailed description of syntax used for
    naming externally stored lists.
-
---------------------------------------
-
-2.3.  :list tagged argument to the "redirect" action
-
-   Usage:  redirect :list <ext-list-name: string>
-
-   The "redirect" action with the ":list" argument is used to send the
-   message to one or more email addresses stored in the externally
-   stored list 'ext-list-name'.  This variant of the redirect command
-   can be used to implement a personal distribution list.
-   
-   The Sieve engine and external list server MUST collaborate to
-   achieve a redirection semantically consistent with the definition
-   of redirect in [Sieve]. If the Sieve engine and external list server 
-   find themselves unable to perform this redirect then the situation 
-   MUST result in a runtime error in the Sieve script.
-
-   See Section 2.4 for the detailed description of syntax used for
-   naming externally stored lists.
-
-
-
-
-   Use of this feature requires that the list resolve to a list of email
-   addresses, and that the Sieve engine be able to enumerate those
-   addresses. [[anchor5: Alexey would like the option of allowing the
-   list handler to enumerate the addresses and do the redirect there.
-   Barry thinks that's contrary to Sieve, which expects to queue the
-   redirect action for processing at a later stage, and that it would be
-   a bad idea to have the redirect happen in the list handler.  The WG
-   needs to resolve this issue.]]  In cases where, for example, a list
-   contains hashed email address values or an email address pattern
-   ("sz*@example.com", "*+ietf@example.net"), it will not be possible to
-   redirect to that list.
-
-   If the Sieve engine [[anchor6: or list handler?]] is permanently
-   unable to enumerate the list or the list does not resolve to email
-   addresses, .
-
-
 
