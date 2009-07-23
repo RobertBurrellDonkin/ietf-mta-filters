@@ -1,0 +1,31 @@
+Proposal: Allow Relative URLs
+
+Use Cases: Local Lists
+
+Relative URLs are a reasonable metaphor for resources private 
+to the engine running the script. This allows:
+
+1. the choice of storage protocol to be transparent to the user
+2. scripts accessing local resources to be portable
+
+The "/" metaphor is suggested for shared resources:
+
+1. Shared Blacklist
+
+Example:
+
+ if list: "/blacklist" {
+   reject;
+ }
+
+2. Shared Distribution List
+
+ redirect list: "/staff"
+
+Use Case Three: Private User Specific Lists 
+
+ if list: "MyFriends" {
+   keep;
+ }
+
+This is really just neat syntactic sugar. 
