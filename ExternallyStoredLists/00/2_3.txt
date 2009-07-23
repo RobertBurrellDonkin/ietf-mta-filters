@@ -1,3 +1,14 @@
+Changes
+-------
+Revise and consoldiate existing paragraphs 3 and 4 into a shorter functional
+description.
+
+Rationale
+---------
+Paragraph 3 in 2.3 adds complex, hard to test restrictions to the implementor
+for very little clear function. Regarding the redirection as a black box
+makes the specification more concise and allows more space for novel 
+implementations.
 
 --------------------------------------------------------------------------
 [1] Proposed Text
