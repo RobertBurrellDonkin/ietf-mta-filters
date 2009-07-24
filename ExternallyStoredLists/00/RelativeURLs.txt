@@ -1,34 +1,41 @@
-Proposal: Allow Relative URLs
+Proposal
+========
+Use relative URIs to represent resources managed transparently by the Sieve Engine.
 
-Use Cases: Local Lists
+Rationale
+=========
+A little syntactic sugar to simplify scripts. 
 
-Relative URLs are a reasonable metaphor for resources private 
-to the engine running the script. This allows:
+For example, the following forms might be functionally equivalent:
 
-1. the choice of storage protocol to be transparent to the user
-2. scripts accessing local resources to be portable
+  redirect :list "tag:example.com,2009-05-28:mylist"
+  redirect :list "MyList"
 
-The "/" metaphor is suggested for shared resources:
+but the relative URI form is more concise.
 
-1. Shared Blacklist
+Disadvantages
+=============
+* It is not obvious that the list name is an URI. Some users may therefore
+  be surprised to learn that URI naming rules apply.
 
-Example:
-
+Sample Use Cases
+================
+Shared Blacklist Maintained By The System Administrator
+-------------------------------------------------------
  if list: "/blacklist" {
    reject;
  }
 
-2. Shared Distribution List
-
+Shared Distribution List Maintained By The System Administrator
+---------------------------------------------------------------
  redirect list: "/staff"
 
-Use Case Three: Private User Specific Lists 
-
+Private Whitelist Maintained By The System For The User
+-------------------------------------------------------
  if list: "MyFriends" {
    keep;
  }
 
-This is really just neat syntactic sugar. 
 
 --------------------------------------------------------------------------
 [1] Proposed Insertion 
@@ -41,7 +48,7 @@ This is really just neat syntactic sugar.
 2.4.1 Relative URIs
 
    A relative URI MAY be interpreted by a Sieve engine as a reference to
-   a transparent list resource managed by the engine. A engine which does
+   a transparent list resource managed by the engine. An engine which does
    not support relative URIs SHOULD raise an error at compile time when 
    this situation arises.
   
