@@ -1,0 +1,41 @@
+
+
+--------------------------------------------------------------------------
+[1] Proposal
+--------------------------------------------------------------------------
+
+2.2.  :list match type for "address", "envelope", and "header" tests
+
+   ABNF:
+
+      MATCH-TYPE  =/ ":list"
+           ; only valid for "address", "envelope", and "header" tests
+
+   The new ":list" match type changes the interpretation of the "key-
+   list" parameter to the "address"/"envelope"/"header" test.  When the
+   match type is ":list", the key-list becomes a list of names of
+   externally stored lists.  The external lists are queried, perhaps
+   through a list-specific mechanism, and the test evaluates to "true"
+   if any of the specified values matches any member of one or more of
+   the lists.
+
+
+--------------------------------------------------------------------------
+[2] Original Text
+--------------------------------------------------------------------------
+
+2.2.  :list match type for "address", "envelope", and "header" tests
+
+   ABNF:
+
+      MATCH-TYPE  =/ ":list"
+           ; only valid for "address", "envelope", and "header" tests
+
+   The new ":list" match type changes the interpretation of the "key-
+   list" parameter to the "address"/"envelope"/"header" test.  When the
+   match type is ":list", the key-list becomes a list of names of
+   externally stored lists.  The external lists are queried, perhaps
+   through a list-specific mechanism, and the test evaluates to "true"
+   if any of the specified values matches any member of one or more of
+   the lists.
+
