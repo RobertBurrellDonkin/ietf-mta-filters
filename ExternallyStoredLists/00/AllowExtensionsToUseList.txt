@@ -1,23 +1,51 @@
+Proposal - Clarify Expected Behaviour For Unsupported Tests
+===========================================================
+Change
+------
+Require implementations to raise a compile time error when link
+is used with an unsupported test.
+Rationale
+---------
+Uniform error handling is useful
 
+Proposal - Allow Extension Tests To Use Link
+============================================
+Change
+------
+Add explicit permission for implementations to support link for other 
+tests.
+Rationale
+---------
+Extensions which find "link" useful should be encouraged to use it
+
+Use Case: Mailing List Local Test
+---------------------------------
+if mailinglist :list "tag:example.org,2009-07-24:IEFT" {
+   fileinto "standards";
+}
 
 --------------------------------------------------------------------------
 [1] Proposal
 --------------------------------------------------------------------------
 
-2.2.  :list match type for "address", "envelope", and "header" tests
+2.2.  :list match type
 
    ABNF:
 
       MATCH-TYPE  =/ ":list"
-           ; only valid for "address", "envelope", and "header" tests
+           ; only valid for supported tests
 
    The new ":list" match type changes the interpretation of the "key-
-   list" parameter to the "address"/"envelope"/"header" test.  When the
-   match type is ":list", the key-list becomes a list of names of
-   externally stored lists.  The external lists are queried, perhaps
-   through a list-specific mechanism, and the test evaluates to "true"
-   if any of the specified values matches any member of one or more of
-   the lists.
+   list" parameter to supported tests.  When the match type is ":list", 
+   the key-list becomes a list of names of externally stored lists.  
+   The external lists are queried, perhaps through a list-specific 
+   mechanism, and the test evaluates to "true" if any of the specified 
+   values matches any member of one or more of the lists.
+
+   Implementations MUST support "address", "envelope" and "header" tests.
+   Implementations MAY support other tests but MUST raise a compile
+   time error when a script contains any standard test where support has 
+   not been explicitly specified.
 
 
 --------------------------------------------------------------------------
