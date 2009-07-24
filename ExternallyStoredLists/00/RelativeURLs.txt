@@ -22,17 +22,17 @@ Sample Use Cases
 ================
 Shared Blacklist Maintained By The System Administrator
 -------------------------------------------------------
- if list: "/blacklist" {
-   reject;
+ if address :list "/blacklist" {
+   discard;
  }
 
 Shared Distribution List Maintained By The System Administrator
 ---------------------------------------------------------------
- redirect list: "/staff"
+ redirect :list "/staff"
 
 Private Whitelist Maintained By The System For The User
 -------------------------------------------------------
- if list: "MyFriends" {
+ if header :list "from" "MyFriends" {
    keep;
  }
 
@@ -48,9 +48,9 @@ Private Whitelist Maintained By The System For The User
 2.4.1 Relative URIs
 
    A relative URI MAY be interpreted by a Sieve engine as a reference to
-   a transparent list resource managed by the engine. An engine which does
-   not support relative URIs SHOULD raise an error at compile time when 
-   this situation arises.
+   a list service resource managed by the implementation. An 
+   implementation which does not support relative URIs SHOULD raise an 
+   error at compile time when a list name is a relative URI.
   
 2.4.2 Absolute URIs
 

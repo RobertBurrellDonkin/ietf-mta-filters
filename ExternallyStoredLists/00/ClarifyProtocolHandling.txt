@@ -93,7 +93,10 @@ A credible alternative choice would be relative URIs.
    discovery. Resources MAY change dynamically. Resolution of the 
    resource MUST be perform at script execution time. When the resource
    cannot be located or the resource type is found to be unsupported 
-   then the implementation MUST raise a runtime error.
+   then the implementation MUST raise a runtime error. 
+
+   Implementations MAY attempt to resolve the URI at compile time but 
+   MUST NOT raise a compile time error on failure.
 
 2.4.1 The Tag Scheme
    The "tag" URI scheme [TAG-URI] can be used to represent opaque, but
