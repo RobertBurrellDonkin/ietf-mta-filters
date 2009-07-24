@@ -1,0 +1,141 @@
+Background
+==========
+
+For example consider
+
+ redirect list: "http://www.example.org/john.smith/friends"
+
+unless this URL is used effectively used as a tag, a 
+general implementation faces difficulties. 
+
+To locate the resource in question requires knowledge of 
+the protocol and of the URI syntax. For example, when a 
+301 response is sent from that URL, the response must 
+be parsed and a new connection opened to the redirected
+URL.
+
+When the resource is finally located, the semantics
+much be discovered. 
+
+The resource may be a document listing - in some format 
+- the required information. For example, the resource
+may be a FOAF document. In this case, the semantics 
+would need to be discovered and understood before
+the 
+
+The resource may be a service. For example, 
+if the resource is a UDDI node then the list of 
+web services advertised must be interrograted 
+to discover an appropriate list server.
+
+Proposal: Separate Section For Discussion of Tag
+=================================================
+Changes
+-------
+Split first paragraph into sections.
+Rationale
+---------
+Clarity
+
+Proposal: Clarify Expected Error Handling Behaviour
+===================================================
+Changes
+-------
+Specify that unsupported URI schemas are compile time 
+errors and that resolution failures are runtime errors.
+Rationale
+---------
+Any URI schema which is not supported by the engine
+will never be resolved. In this case, it is clearer and
+cleaner to fail at compile time. Note that this case 
+also includes malformed names.
+
+Resources and resource resolution are dynamic. Typical
+implementations will only support a limited range of 
+resource discovery and resource semantics. Changes to
+a resource may enable or disable interoperability. 
+Therefore resource resolution, discovery and retrieval
+should happen on script execution and raise runtime
+errors. 
+
+Proposal: Require Implementations To Support [TAG-URI]
+======================================================
+Changes
+-------
+Require that all implementations support tag, plus any other
+URI schemes of their choice.
+Rationale
+---------
+Insisting that implementations support at least one protocol
+sets a minimum level for script portability. Picking one
+particular web protocol such as LDAP, HTTP or FTP would impose
+a unnecessary burden on implementors and involve the specification
+in the semantics of the engine-list server interaction. 
+
+A credible alternative choice would be relative URIs.
+
+
+
+--------------------------------------------------------------------------
+[1] Proposal
+--------------------------------------------------------------------------
+
+2.4.  Syntax of an externally stored list name
+
+   A name of an externally stored list is always an absolute URI [URI].
+   Implementations might find URLs such as [LDAP], [CardDAV], or
+   [TAG-URI] to be useful for naming external lists.
+
+   Implementations MUST raise a compile time error when a list name
+   cannot be parsed into a URI scheme supported by the implementation.
+
+   Resolution of the resource MAY involve resource location and service 
+   discovery. Resources MAY change dynamically. Resolution of the 
+   resource MUST be perform at script execution time. When the resource
+   cannot be located or the resource type is found to be unsupported 
+   then the implementation MUST raise a runtime error.
+
+2.4.1 The Tag Scheme
+   The "tag" URI scheme [TAG-URI] can be used to represent opaque, but
+   user friendlier identifiers.
+
+   Resolution of such identifiers is going to be implementation specific 
+   and it can help in hiding the complexity of an implementation from 
+   end users.  For example, an implementation can provide a web interface 
+   for managing lists of users stored in LDAP.  Requiring users to know 
+   generic LDAP URL syntax might not be very practical, due to its 
+   complexity.  An implementation can instead use a fixed tag URI prefix 
+   such as "tag:example.com,<date>:" (where <date> can be, for example, 
+   a date generated once on installation of the web interface and left
+   untouched upon upgrades) and the prefix doesn't even need to be shown
+   to end users.
+
+   Implementations MUST support the [TAG-URI] URI scheme.
+
+2.4.2 Other URI Schemes
+
+   Implementations MAY support other URI schemes. 
+
+--------------------------------------------------------------------------
+[2] Original Text
+--------------------------------------------------------------------------
+
+2.4.  Syntax of an externally stored list name
+
+   A name of an externally stored list is always an absolute URI [URI].
+   Implementations might find URLs such as [LDAP], [CardDAV], or
+   [TAG-URI] to be useful for naming external lists.
+   The "tag" URI scheme [TAG-URI] can be used to represent opaque, but
+   user friendlier identifiers.  Resolution of such identifiers is going
+   to be implementation specific and it can help in hiding the
+   complexity of an implementation from end users.  For example, an
+   implementation can provide a web interface for managing lists of
+   users stored in LDAP.  Requiring users to know generic LDAP URL
+   syntax might not be very practical, due to its complexity.  An
+   implementation can instead use a fixed tag URI prefix such as "tag:
+   example.com,<date>:" (where <date> can be, for example, a date
+   generated once on installation of the web interface and left
+   untouched upon upgrades) and the prefix doesn't even need to be shown
+   to end users.
+
+
