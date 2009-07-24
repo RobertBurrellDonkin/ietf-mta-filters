@@ -5,10 +5,10 @@ description.
 
 Rationale
 ---------
-Paragraph 3 in 2.3 adds complex, hard to test restrictions to the implementor
-for very little clear function. Regarding the redirection as a black box
-makes the specification more concise and allows more space for novel 
-implementations.
+Paragraph 3 in 2.3 adds complex, hard to test requirements on the 
+implementation for little clear function. Regarding the redirection 
+as a black box makes the specification more concise and allows more 
+space for novel approaches.
 
 --------------------------------------------------------------------------
 [1] Proposed Text
@@ -23,11 +23,10 @@ implementations.
    stored list 'ext-list-name'.  This variant of the redirect command
    can be used to implement a personal distribution list.
    
-   The Sieve engine and external list server MUST collaborate to
-   achieve a redirection semantically consistent with the definition
-   of redirect in [Sieve]. If the Sieve engine and external list server 
-   find themselves unable to perform this redirect then the situation 
-   MUST result in a runtime error in the Sieve script.
+   The Sieve engine and list server SHOULD collaborate to achieve a 
+   redirection consistent with the semantics defined in [Sieve]. If 
+   they are unable to do so then the situation MUST result in a 
+   runtime error.
 
    See Section 2.4 for the detailed description of syntax used for
    naming externally stored lists.
